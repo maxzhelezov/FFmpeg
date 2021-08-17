@@ -162,6 +162,7 @@ static const AVOption v360_options[] = {
     {    "iv_fov", "input vertical field of view",  OFFSET(iv_fov), AV_OPT_TYPE_FLOAT,  {.dbl=45.f},     0.00001f,               360.f,TFLAGS, "iv_fov"},
     {    "id_fov", "input diagonal field of view",  OFFSET(id_fov), AV_OPT_TYPE_FLOAT,  {.dbl=0.f},           0.f,               360.f,TFLAGS, "id_fov"},
     {"alpha_mask", "build mask in alpha plane",      OFFSET(alpha), AV_OPT_TYPE_BOOL,   {.i64=0},               0,                   1, FLAGS, "alpha"},
+    {"dyn_angles", "specify file to read y,p,r angles",OFFSET(dyn), AV_OPT_TYPE_STRING,   {.str = ""},          0,                   0, FLAGS, "dyn"},
     { NULL }
 };
 
@@ -4686,6 +4687,8 @@ static int filter_frame(AVFilterLink *inlink, AVFrame *in)
     V360Context *s = ctx->priv;
     AVFrame *out;
     ThreadData td;
+    double y, p, r;
+    int ret_val;
 
     out = ff_get_video_buffer(outlink, outlink->w, outlink->h);
     if (!out) {
@@ -4696,6 +4699,29 @@ static int filter_frame(AVFilterLink *inlink, AVFrame *in)
 
     td.in = in;
     td.out = out;
+     
+    if (strcmp(s -> dyn, "") != 0){
+        ret_val = fscanf(s -> f, "%lf,%lf,%lf", &y,&p,&r);
+        
+        if (ret_val < 3){
+            av_log(ctx, AV_LOG_ERROR,
+                "Error while reading dynamic angles file.\n");
+            return AVERROR(EINVAL);
+        }
+
+        if (ret_val == EOF){
+            av_log(ctx, AV_LOG_ERROR,
+                "Error sudden end of dynamic angles file.\n");
+            return AVERROR(EINVAL);
+        }
+
+        calculate_rotation(y, p, r,
+            s->rot_quaternion, s->rotation_order);
+
+        set_mirror_modifier(s->h_flip, s->v_flip, s->d_flip, s->output_mirror_modifier);
+
+        ctx->internal->execute(ctx, v360_slice, NULL, NULL, s->nb_threads);
+    }
 
     ctx->internal->execute(ctx, s->remap_slice, &td, NULL, s->nb_threads);
 
@@ -4724,7 +4750,16 @@ static av_cold int init(AVFilterContext *ctx)
 
     s->rot_quaternion[0][0] = 1.f;
     s->rot_quaternion[0][1] = s->rot_quaternion[0][2] = s->rot_quaternion[0][3] = 0.f;
-
+    
+    if (strcmp(s -> dyn, "") != 0){  
+        s -> f = fopen(s -> dyn, "r");
+        if (s -> f == NULL){ 
+            av_log(ctx, AV_LOG_ERROR,
+                "Error opening dynamic angles file.\n");
+            return AVERROR(EINVAL);
+        }
+    }
+     
     return 0;
 }
 

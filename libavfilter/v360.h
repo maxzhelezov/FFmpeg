@@ -127,6 +127,8 @@ typedef struct V360Context {
     char *in_frot;
     char *out_frot;
     char *rorder;
+    char *dyn;
+    FILE *f;
 
     int in_cubemap_face_order[6];
     int out_cubemap_direction_order[6];
