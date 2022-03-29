@@ -845,6 +845,20 @@ FATE_FILTER_SAMPLES-$(call ALLYES, MOV_DEMUXER H264_DECODER AAC_FIXED_DECODER PC
 fate-filter-meta-4560-rotate0: tests/data/file4560-override2rotate0.mov
 fate-filter-meta-4560-rotate0: CMD = framecrc -auto_conversion_filters -flags +bitexact -c:a aac_fixed -i $(TARGET_PATH)/tests/data/file4560-override2rotate0.mov
 
+SPHERICAL_DEPS = MATROSKA_DEMUXER VP8_DECODER V360_FILTER SSIM360_FILTER
+SPHERICAL_SAMPLE = $(TARGET_SAMPLES)/spherical/Worlds_First_Live_360_Rocket_Launch-_Orbital_ATK_CRS-7_cut.mkv
+
+FATE_FILTER_SPHERICAL += fate-filter-spherical-c3x2
+fate-filter-spherical-c3x2: CMD = spherical_compare $(SPHERICAL_SAMPLE) \
+	"split[in][ref];[in]v360=input=e:output=c3x2[main];[main][ref]ssim360=main_projection=c3x2:ref_projection=e"
+
+FATE_FILTER_SPHERICAL += fate-filter-spherical-barrel
+fate-filter-spherical-barrel: CMD = spherical_compare $(SPHERICAL_SAMPLE) \
+	"split[in][ref];[in]v360=input=e:output=barrel[main];[main][ref]ssim360=main_projection=barrel:ref_projection=e"
+
+FATE_SAMPLES_SPHERICAL_COMPARE-$(call ALLYES, $(SPHERICAL_DEPS)) += $(FATE_FILTER_SPHERICAL)
+FATE_SAMPLES_SPHERICAL_COMPARE += $(FATE_SAMPLES_SPHERICAL_COMPARE-yes)
+
 REFCMP_DEPS = FFMPEG LAVFI_INDEV TESTSRC2_FILTER AVGBLUR_FILTER METADATA_FILTER
 
 FATE_FILTER-$(call ALLYES, $(REFCMP_DEPS) PSNR_FILTER) += fate-filter-refcmp-psnr-rgb

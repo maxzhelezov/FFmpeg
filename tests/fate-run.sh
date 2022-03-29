@@ -507,6 +507,12 @@ venc_data(){
     run tools/venc_data_dump${EXECSUF} ${file} ${stream} ${frames} ${threads} ${thread_type}
 }
 
+spherical_compare(){
+    file=$1
+    filterchain=$2
+    run tools/spherical_compare${EXECSUF} ${file} ${filterchain}
+}
+
 null(){
     :
 }

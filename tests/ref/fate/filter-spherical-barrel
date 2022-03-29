@@ -1,0 +1,192 @@
+frame 0
+lavfi.ssim360.Y=0.97
+lavfi.ssim360.U=1.00
+lavfi.ssim360.V=1.00
+lavfi.ssim360.All=1.00
+lavfi.ssim360.dB=25.19
+frame 1
+lavfi.ssim360.Y=0.97
+lavfi.ssim360.U=1.00
+lavfi.ssim360.V=1.00
+lavfi.ssim360.All=1.00
+lavfi.ssim360.dB=25.04
+frame 2
+lavfi.ssim360.Y=0.97
+lavfi.ssim360.U=1.00
+lavfi.ssim360.V=1.00
+lavfi.ssim360.All=1.00
+lavfi.ssim360.dB=24.95
+frame 3
+lavfi.ssim360.Y=0.97
+lavfi.ssim360.U=1.00
+lavfi.ssim360.V=1.00
+lavfi.ssim360.All=1.00
+lavfi.ssim360.dB=24.88
+frame 4
+lavfi.ssim360.Y=0.97
+lavfi.ssim360.U=1.00
+lavfi.ssim360.V=1.00
+lavfi.ssim360.All=1.00
+lavfi.ssim360.dB=24.80
+frame 5
+lavfi.ssim360.Y=0.97
+lavfi.ssim360.U=1.00
+lavfi.ssim360.V=1.00
+lavfi.ssim360.All=1.00
+lavfi.ssim360.dB=24.75
+frame 6
+lavfi.ssim360.Y=0.97
+lavfi.ssim360.U=1.00
+lavfi.ssim360.V=1.00
+lavfi.ssim360.All=1.00
+lavfi.ssim360.dB=24.70
+frame 7
+lavfi.ssim360.Y=0.97
+lavfi.ssim360.U=1.00
+lavfi.ssim360.V=1.00
+lavfi.ssim360.All=1.00
+lavfi.ssim360.dB=24.63
+frame 8
+lavfi.ssim360.Y=0.97
+lavfi.ssim360.U=1.00
+lavfi.ssim360.V=1.00
+lavfi.ssim360.All=1.00
+lavfi.ssim360.dB=24.58
+frame 9
+lavfi.ssim360.Y=0.97
+lavfi.ssim360.U=1.00
+lavfi.ssim360.V=1.00
+lavfi.ssim360.All=1.00
+lavfi.ssim360.dB=24.54
+frame 10
+lavfi.ssim360.Y=0.97
+lavfi.ssim360.U=1.00
+lavfi.ssim360.V=1.00
+lavfi.ssim360.All=1.00
+lavfi.ssim360.dB=24.51
+frame 11
+lavfi.ssim360.Y=0.97
+lavfi.ssim360.U=1.00
+lavfi.ssim360.V=1.00
+lavfi.ssim360.All=1.00
+lavfi.ssim360.dB=24.49
+frame 12
+lavfi.ssim360.Y=0.97
+lavfi.ssim360.U=1.00
+lavfi.ssim360.V=1.00
+lavfi.ssim360.All=1.00
+lavfi.ssim360.dB=24.46
+frame 13
+lavfi.ssim360.Y=0.97
+lavfi.ssim360.U=1.00
+lavfi.ssim360.V=1.00
+lavfi.ssim360.All=1.00
+lavfi.ssim360.dB=24.42
+frame 14
+lavfi.ssim360.Y=0.97
+lavfi.ssim360.U=1.00
+lavfi.ssim360.V=1.00
+lavfi.ssim360.All=1.00
+lavfi.ssim360.dB=24.41
+frame 15
+lavfi.ssim360.Y=0.96
+lavfi.ssim360.U=1.00
+lavfi.ssim360.V=1.00
+lavfi.ssim360.All=1.00
+lavfi.ssim360.dB=24.39
+frame 16
+lavfi.ssim360.Y=0.97
+lavfi.ssim360.U=1.00
+lavfi.ssim360.V=1.00
+lavfi.ssim360.All=1.00
+lavfi.ssim360.dB=24.33
+frame 17
+lavfi.ssim360.Y=0.96
+lavfi.ssim360.U=1.00
+lavfi.ssim360.V=1.00
+lavfi.ssim360.All=1.00
+lavfi.ssim360.dB=24.30
+frame 18
+lavfi.ssim360.Y=0.96
+lavfi.ssim360.U=1.00
+lavfi.ssim360.V=1.00
+lavfi.ssim360.All=1.00
+lavfi.ssim360.dB=24.27
+frame 19
+lavfi.ssim360.Y=0.96
+lavfi.ssim360.U=1.00
+lavfi.ssim360.V=1.00
+lavfi.ssim360.All=1.00
+lavfi.ssim360.dB=24.25
+frame 20
+lavfi.ssim360.Y=0.96
+lavfi.ssim360.U=1.00
+lavfi.ssim360.V=1.00
+lavfi.ssim360.All=1.00
+lavfi.ssim360.dB=24.22
+frame 21
+lavfi.ssim360.Y=0.96
+lavfi.ssim360.U=1.00
+lavfi.ssim360.V=1.00
+lavfi.ssim360.All=1.00
+lavfi.ssim360.dB=24.19
+frame 22
+lavfi.ssim360.Y=0.96
+lavfi.ssim360.U=1.00
+lavfi.ssim360.V=1.00
+lavfi.ssim360.All=1.00
+lavfi.ssim360.dB=24.16
+frame 23
+lavfi.ssim360.Y=0.96
+lavfi.ssim360.U=1.00
+lavfi.ssim360.V=1.00
+lavfi.ssim360.All=1.00
+lavfi.ssim360.dB=24.14
+frame 24
+lavfi.ssim360.Y=0.96
+lavfi.ssim360.U=1.00
+lavfi.ssim360.V=1.00
+lavfi.ssim360.All=1.00
+lavfi.ssim360.dB=24.08
+frame 25
+lavfi.ssim360.Y=0.96
+lavfi.ssim360.U=1.00
+lavfi.ssim360.V=1.00
+lavfi.ssim360.All=1.00
+lavfi.ssim360.dB=24.02
+frame 26
+lavfi.ssim360.Y=0.96
+lavfi.ssim360.U=1.00
+lavfi.ssim360.V=1.00
+lavfi.ssim360.All=1.00
+lavfi.ssim360.dB=24.01
+frame 27
+lavfi.ssim360.Y=0.96
+lavfi.ssim360.U=1.00
+lavfi.ssim360.V=1.00
+lavfi.ssim360.All=1.00
+lavfi.ssim360.dB=23.98
+frame 28
+lavfi.ssim360.Y=0.96
+lavfi.ssim360.U=1.00
+lavfi.ssim360.V=1.00
+lavfi.ssim360.All=1.00
+lavfi.ssim360.dB=23.96
+frame 29
+lavfi.ssim360.Y=0.96
+lavfi.ssim360.U=1.00
+lavfi.ssim360.V=1.00
+lavfi.ssim360.All=1.00
+lavfi.ssim360.dB=23.95
+frame 30
+lavfi.ssim360.Y=0.96
+lavfi.ssim360.U=1.00
+lavfi.ssim360.V=1.00
+lavfi.ssim360.All=1.00
+lavfi.ssim360.dB=23.93
+frame 31
+lavfi.ssim360.Y=0.96
+lavfi.ssim360.U=1.00
+lavfi.ssim360.V=1.00
+lavfi.ssim360.All=1.00
+lavfi.ssim360.dB=23.91

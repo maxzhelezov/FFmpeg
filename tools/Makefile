@@ -19,6 +19,7 @@ tools/target_io_dem_fuzzer.o: tools/target_dem_fuzzer.c
 
 tools/venc_data_dump$(EXESUF): tools/decode_simple.o
 tools/scale_slice_test$(EXESUF): tools/decode_simple.o
+tools/spherical_compare$(EXESUF): tools/decode_simple.o
 
 OUTDIRS += tools
 

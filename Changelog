@@ -9,6 +9,7 @@ version <next>:
 - Argonaut Games CVG muxer
 - Concatf protocol
 - afwtdn audio filter
+- ssim360 video filter
 
 
 version 4.4:
