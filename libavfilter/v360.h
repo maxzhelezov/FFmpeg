@@ -31,6 +31,7 @@ enum StereoFormats {
 
 enum Projections {
     EQUIRECTANGULAR,
+    CRASTERP,
     CUBEMAP_3_2,
     CUBEMAP_6_1,
     EQUIANGULAR,

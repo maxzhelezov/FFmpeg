@@ -87,6 +87,7 @@ static const AVOption v360_options[] = {
     {    "output", "set output projection",            OFFSET(out), AV_OPT_TYPE_INT,    {.i64=CUBEMAP_3_2},     0,    NB_PROJECTIONS-1, FLAGS, "out" },
     {         "e", "equirectangular",                            0, AV_OPT_TYPE_CONST,  {.i64=EQUIRECTANGULAR}, 0,                   0, FLAGS, "out" },
     {  "equirect", "equirectangular",                            0, AV_OPT_TYPE_CONST,  {.i64=EQUIRECTANGULAR}, 0,                   0, FLAGS, "out" },
+    {       "cpp", "craster-parabolic",                          0, AV_OPT_TYPE_CONST,  {.i64=CRASTERP},        0,                   0, FLAGS, "out" },
     {      "c3x2", "cubemap 3x2",                                0, AV_OPT_TYPE_CONST,  {.i64=CUBEMAP_3_2},     0,                   0, FLAGS, "out" },
     {      "c6x1", "cubemap 6x1",                                0, AV_OPT_TYPE_CONST,  {.i64=CUBEMAP_6_1},     0,                   0, FLAGS, "out" },
     {       "eac", "equi-angular cubemap",                       0, AV_OPT_TYPE_CONST,  {.i64=EQUIANGULAR},     0,                   0, FLAGS, "out" },
@@ -1758,6 +1759,70 @@ static int equirect_to_xyz(const V360Context *s,
 }
 
 /**
+ * Calculate 3D coordinates on sphere for corresponding frame position in craster-parabolic format.
+ *
+ * @param s filter private context
+ * @param i horizontal position on frame [0, width)
+ * @param j vertical position on frame [0, height)
+ * @param width frame width
+ * @param height frame height
+ * @param vec coordinates on sphere
+ */
+static int cpp_to_xyz(const V360Context *s,
+                           int i, int j, int width, int height,
+                           float *vec)
+{
+    const float u = i + 0.5;
+    const float v = j + 0.5;
+
+    if ((u < 0 || u >= width) && ( v >= 0 && v < height)) 
+    {
+        u = u < 0 ? width+u : (u - width);
+    }
+    else if (v < 0)
+    {
+        v = -v; 
+        u = u + (width>>1);
+        u = u >= width ? u - width : u;
+    }
+    else if(v >= height)
+    {
+        v = (height<<1)-v; 
+        u = u + (width>>1);
+        u = (u >= width) ? u - width : u;
+    }
+    
+    const pitch = (3 *  asinf((double)v/height-0.5));
+    const yaw = ((2 * M_PI * (double)u/width - M_PI) / (2 * cosf(2 * pitch/3) - 1));
+    pitch = -pitch;
+
+    if(-M_PI_2 <= pitch && pitch <= M_PI_2 && -M_PI <= yaw && yaw <= M_PI)
+    {
+        vec[0] = cosf(pitch)*cosf(yaw);  
+        vec[1] = sinf(pitch);  
+        vec[2] = -cosf(pitch)*sinf(yaw);
+    }
+    else
+    {
+        vec[0] = 1.0;
+        vec[1] = vec[2] = 0.0;
+    }
+
+    /*
+    // const float sin_phi   = sinf(phi);
+    // const float cos_phi   = cosf(phi);
+    // const float sin_theta = sinf(theta);
+    // const float cos_theta = cosf(theta);
+
+    // vec[0] = cos_theta * sin_phi;
+    // vec[1] = sin_theta;
+    // vec[2] = cos_theta * cos_phi;
+    */
+
+    return 1;
+}
+
+/**
  * Calculate 3D coordinates on sphere for corresponding frame position in half equirectangular format.
  *
  * @param s filter private context
@@ -2140,6 +2205,7 @@ static int xyz_to_equirect(const V360Context *s,
 
     return 1;
 }
+
 
 /**
  * Calculate frame position in half equirectangular format for corresponding 3D coordinates on sphere.
@@ -4437,6 +4503,12 @@ static int config_output(AVFilterLink *outlink)
         prepare_out = NULL;
         w = lrintf(wf);
         h = lrintf(hf);
+        break;
+    case CRASTERP:
+        s->in_transform = cpp_to_xyz;
+        prepare_out = NULL;
+        wf = lrintf(wf);
+        hf = lrintf(wf / 2.f);
         break;
     case CUBEMAP_3_2:
         s->out_transform = cube3x2_to_xyz;
