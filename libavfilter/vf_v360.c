@@ -1772,8 +1772,8 @@ static int cpp_to_xyz(const V360Context *s,
                            int i, int j, int width, int height,
                            float *vec)
 {
-    const float u = i + 0.5;
-    const float v = j + 0.5;
+    float u = i + 0.5;
+    float v = j + 0.5;
 
     if ((u < 0 || u >= width) && ( v >= 0 && v < height)) 
     {
@@ -1792,8 +1792,8 @@ static int cpp_to_xyz(const V360Context *s,
         u = (u >= width) ? u - width : u;
     }
     
-    const pitch = (3 *  asinf((double)v/height-0.5));
-    const yaw = ((2 * M_PI * (double)u/width - M_PI) / (2 * cosf(2 * pitch/3) - 1));
+    float pitch = (3 *  asinf((double)v/height-0.5));
+    float yaw = ((2 * M_PI * (double)u/width - M_PI) / (2 * cosf(2 * pitch/3) - 1));
     pitch = -pitch;
 
     if(-M_PI_2 <= pitch && pitch <= M_PI_2 && -M_PI <= yaw && yaw <= M_PI)
@@ -4505,7 +4505,7 @@ static int config_output(AVFilterLink *outlink)
         h = lrintf(hf);
         break;
     case CRASTERP:
-        s->in_transform = cpp_to_xyz;
+        s->out_transform = cpp_to_xyz;
         prepare_out = NULL;
         wf = lrintf(wf);
         hf = lrintf(wf / 2.f);
